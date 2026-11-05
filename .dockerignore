@@ -1,0 +1,23 @@
+# Node & extension build
+node_modules/
+extension/dist/
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Sensitive local configurations
+.env
+*.env
+backend/.env
+
+# Git & OS
+.git
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

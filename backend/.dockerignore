@@ -1,0 +1,29 @@
+# Python cache & compiled files
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache
+
+# Virtual environments
+.venv
+venv
+env
+ENV
+
+# Sensitive local configurations
+.env
+*.env
+.env.*
+
+# Git & documentation
+.git
+.gitignore
+README.md
+*.md
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.idea
+.vscode

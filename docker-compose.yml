@@ -1,0 +1,29 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: paysafe_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    # Load environment variables from .env if present (root or backend)
+    env_file:
+      - path: ./backend/.env
+        required: false
+      - path: ./.env
+        required: false
+    # Sane default environment values for container execution
+    environment:
+      - PORT=8000
+      - GEMINI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
+      - OPENAI_MODEL=models/gemini-3.5-flash-lite
+      - PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com
+    volumes:
+      - ./backend:/app
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/health || python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')\""]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
